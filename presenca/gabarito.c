@@ -40,4 +40,6 @@ int main(){
         }
         printf("\nO(A) %d aluno(a) acertou %d questao(oes)\n", i+1, acertos);
     }
+
+    return 0;
 }
