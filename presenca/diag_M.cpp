@@ -57,8 +57,8 @@ void soma_secundaria(int dimensao, int Matriz[MAX][MAX], int &soma){
 
 void imprime_m(int dimensao, int Matriz[MAX][MAX]){
     for(int i = 0; i < dimensao; i++){
-        for(int j = 0; j , dimensao; j++){
-            printf("%d ", &Matriz[i][j]);
+        for(int j = 0; j < dimensao; j++){
+            printf("%d ", Matriz[i][j]);
         }
         printf("\n");
     }
@@ -67,7 +67,7 @@ void imprime_m(int dimensao, int Matriz[MAX][MAX]){
 void imprime_somas(int d, int Matriz[MAX][MAX], int p, int s){
     p = soma_principal(Matriz, d);
     soma_secundaria(d, Matriz, s);
-    printf("A soma da diagonal principal eh %d!", p);
+    printf("\nA soma da diagonal principal eh %d!\n", p);
     printf("A soma da diagonal secundaria eh %d", s);
 
 }
@@ -81,6 +81,7 @@ int main(){
     }while(n < 1 || n > 100);
 
     le_matriz(n, M); /*tenho a M*/
+    printf("\nA matriz em questao eh dada abaixo:\n");
     imprime_m(n, M); /* imprime a matriz*/
     imprime_somas(n, M, somaP, somaS);
 
