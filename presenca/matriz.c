@@ -6,8 +6,7 @@
 
 int main(){
 
-    int L, C, somaL,somaC, quantL = 0, quantC = 0;
-    int i, j;
+    int L, C, quantZ, linhasN = 0, colunasN = 0;
     int M[MAX][MAX];
 
     do{
@@ -15,33 +14,42 @@ int main(){
         scanf("%d %d", &L, &C);
     }while(L < MIN || C < MIN || L > MAX || C > MAX );
 
-    for(i = 0; i < L; i++){
-        for(j = 0; j < C; j++){
+    for(int i = 0; i < L; i++){
+        for(int j = 0; j < C; j++){
             printf("Informe o valor de M[%d][%d]: ", i+1, j+1);
             scanf("%d", &M[i][j]);
         }
 
     }
 
-    /*somando os valores de cada linha e de cada coluna*/
-    for(i = 0; i < L; i++){
-         somaL = 0;
-         somaC = 0;
-        for(j = 0; j < C; j++){
-            somaL = somaL + M[i][j];
-            somaC = somaC + M[j][i];
-        }
-        
-        if (somaL == 0){
-            quantL++;
+    for(int i = 0; i < L; i++){
+        quantZ = 0;
+        for(int j = 0; j < C; j++){
+            if(M[i][j] == 0){
+                quantZ++;
+            }
         }
 
-        if (somaC == 0){
-            quantC++;
+        if(quantZ == C){
+            linhasN++;
         }
-    }
-    
 
-    printf("Essa matriz possui %d linha(s) e %d coluna(s) nularias!", quantL, quantC);
+   }
 
+    for(int i = 0; i < C; i++){
+        quantZ = 0;
+        for(int j = 0; j < L; j++){
+            if(M[j][i] == 0){
+                quantZ++;
+            }
+        }
+        if(quantZ == L){
+            colunasN++;
+        }
+    }  
+
+
+    printf("Essa matriz possui %d linha(s) e %d coluna(s) nularias!", linhasN, colunasN);
+
+    return 0;
 }
