@@ -11,6 +11,7 @@ Podemos calcular o valor N1 para a primeira data informada, o valor N2 para a se
 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 struct novo_tipo{
     int dd, mm, aa;
@@ -62,6 +63,7 @@ int main(){
     n2 = floor((1461 * aux1)/4) + floor((153 * aux2)/5) + dataf.dd;
     
     resposta = floor(n1 - n2);
+    resposta = abs(resposta);
     
     
     printf("%.0f\n", resposta);

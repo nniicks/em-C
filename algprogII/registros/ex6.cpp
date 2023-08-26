@@ -45,8 +45,22 @@ int main(){
     n = floor((1461 * aux1)/4) + floor((153 * aux2)/5) + data.dd;
     n -= 621049;
     n = (int)n % 7;
-    
-    printf("%0.f\n", n);
+
+    if(n == 0){
+        printf("Domingo\n");
+    }else if(n == 1){
+        printf("Segunda-Feira\n");
+    }else if (n == 2){
+        printf("Terça-Feira\n");
+    }else if (n == 3){
+        printf("Quarta-Feira\n");
+    }else if(n ==  4){
+        printf("Quinta-Feira\n");
+    }else if( n == 5){
+        printf("Sexta-Feira\n");
+    }else{
+        printf("Sábado\n");
+    }
     
     return 0;
     

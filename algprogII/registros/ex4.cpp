@@ -13,27 +13,48 @@ struct novo_tipo{
 
 int main(){
     novo_tipo t1, t2, aux;
+    int tempo1, tempo2;
     
     scanf("%d:%d:%d", &t1.hh, &t1.mm, &t1.ss);
     scanf("%d:%d:%d", &t2.hh, &t2.mm, &t2.ss);
     
-    if(t2.ss >= t1.ss){
-        aux.ss = t2.ss - t1.ss;
-    }else{
-        t2.ss += 60;
-        t2.mm--;
-        aux.ss = t2.ss - t1.ss;
-    }
-    if(t2.mm >= t1.mm){
-        aux.mm = t2.mm - t1.mm;
-    }else{
-        t2.mm += 60;
-        t2.hh--;
-        aux.mm = t2.mm - t1.mm;
-    }
-    aux.hh = t2.hh - t1.hh;
+    tempo1 = t1.hh * 3600;
+    tempo2 = t2.hh * 3600;
     
-    printf("%d:%d:%d", aux.hh, aux.mm, aux.ss);
+    tempo1 += t1.mm * 60;
+    tempo2 += t2.mm * 60;
+    
+    tempo1 += t1.ss;
+    tempo2 += t2.ss;
+    
+    if (tempo1 > tempo2){
+        aux.ss = tempo1 - tempo2;
+        
+        aux.hh = aux.ss / 3600;
+        
+        aux.ss = aux.ss - (3600*aux.hh);
+        
+        aux.mm = aux.ss / 60;
+        
+        aux.ss = aux.ss - (60 * aux.mm);
+        
+        printf("%02d:%02d:%02d\n", aux.hh, aux.mm, aux.ss);
+        
+    }else{
+        aux.ss = tempo2 - tempo1;
+        
+        aux.hh = aux.ss / 3600;
+        
+        aux.ss = aux.ss - (3600*aux.hh);
+        
+        aux.mm = aux.ss / 60;
+        
+        aux.ss = aux.ss - (60 * aux.mm);
+        
+        printf("%02d:%02d:%02d\n", aux.hh, aux.mm, aux.ss);
+        
+    }
+    
     
     return 0;
     
