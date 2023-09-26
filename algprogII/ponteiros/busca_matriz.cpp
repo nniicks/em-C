@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define L 3
-#define C 3
+#define L 100
+#define C 100
 
 void cria_M(int *pt_aux);
 int busca(int *pt_aux, int *numero);
@@ -26,6 +26,7 @@ int main(){
         printf("Numero %d esta na matriz, e ele  o A%d%d!", num, i,posicao+1);
     }
     
+    return 0;
 }
 
 

@@ -13,7 +13,6 @@ void cadastro(novoTipo carros[CAR]);
 void menores(novoTipo c[CAR], int *valor);
 
 
-
 int main(){
     int n;
     novoTipo carros[CAR];
