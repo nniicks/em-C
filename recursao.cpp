@@ -202,7 +202,76 @@ int busca(int *v, int n, int numero){
         
 }
 
+----------------- BUSCA BINARIA (SEM RECURSAO!!!!!) ----------------------
 
+#include <stdio.h>
+#include <stdlib.h>
+
+void ordena(int *v, int n);
+
+int main(){
+    int *vetor, *p, n, numero, comeco, final, medio, posicao = -1;
+    
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &n);
+    
+    vetor = (int *) malloc(n * sizeof(int));
+    if(vetor == NULL){
+        printf("Nao foi possivel armazenar o vetor na memoria!");
+        return 0;
+    }else{
+        printf("Entre com os valores do vetor!\n");
+        for(p = vetor; p < vetor + n; p++){
+            scanf("%d", p);
+        }
+        
+        ordena(vetor, n);
+        
+        printf("Digite um numero: ");
+        scanf("%d", &numero);
+        
+        comeco = 0;
+        final = n;
+        medio = (comeco + final)/2;
+        do{
+            if(*(vetor + medio) == numero){            //*(vetor + medio) = vetor[medio]
+                posicao = medio;
+                break;                            //se eu achar o numero eu ja posso sair do laço
+            }else if(numero > *(vetor + medio)){
+                comeco = medio + 1;
+                medio = (comeco + final)/2;
+                
+            }else{
+                final = medio - 1;
+                medio = (comeco + final)/2;
+            }
+        }while(comeco <= final);
+        
+        if(posicao == -1){
+            printf("O numero %d NAO esta no vetor!", numero);
+        }else{
+            printf("O numero %d esta na posicao %d do vetor ordenado!", numero, posicao);
+        }
+        
+        free(vetor);
+    }
+    
+    return 0;
+}
+
+void ordena(int *v, int n){
+    int *p, *q, aux;
+    
+    for(p = &v[n-1]; p > v - 1; p--){
+        for(q = v; q < p; q++){
+            if(*q > *(q + 1)){
+                aux = *q;
+                *q = *(q + 1);
+                *(q + 1) = aux;
+            }
+        }
+    }
+}
 
 ---------------------------------------------------------------------------------------------------
 
