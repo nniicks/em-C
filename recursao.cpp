@@ -116,6 +116,94 @@ int busca(int n, int *v, int numero){
     
 }
 
+------------ BUSCA SEQUENCIAL EM UM VETOR ORDENADO ------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void ordena(int *v, int n);
+
+int busca(int *v, int n, int numero);
+
+int main(){
+    int *vetor, *p, n, numero, flag;
+    
+    printf("Informe o tamanho do vetor: ");
+    scanf("%d", &n);
+    
+    vetor = (int *) malloc(n * sizeof(int));
+    if(vetor == NULL){
+        printf("Nao foi possivel alocar o vetor na memoria!");
+        return 0;
+    }else{
+        printf("Entre com os valores para o vetor\n");
+        for(p = vetor; p < vetor + n; p++){
+            scanf("%d", p);
+        }
+        
+        printf("Digite um numero: ");
+        scanf("%d", &numero);
+        
+        ordena(vetor, n);
+        
+        flag = busca(vetor, n, numero);
+        
+        if(flag == -1){
+            printf("O numero %d nao esta no vetor!", numero);
+        }else{
+            printf("O numero %d esta na posicao %d do vetor ordenado!", numero, flag);
+        }
+        
+        free(vetor);
+        
+    }
+    
+    return 0;
+}
+
+void ordena(int *v, int n){
+    int *p, *q, aux;
+    
+    for(p = &v[n-1]; p > v - 1; p--){
+        for(q = v; q < p; q++){
+            if(*q > *(q+1)){
+                aux = *q;
+                *q = *(q+1);
+                *(q+1) = aux;
+            }
+        }
+    }
+}
+
+int busca(int *v, int n, int numero){
+    
+    if(n == 0){
+        
+        if(numero == *v){
+            return 0;                //0 eh a posicao do numero no vetor
+        }else{
+            return -1;              //-1 indica que o numero nao esta no vetor
+        }
+        
+    }else{
+        
+        if(numero == v[n-1]){
+            
+            return n-1;                //n-1 posicao do vetor
+            
+        }else if(numero > v[n-1]){   //vetor ordenado, e numero sendo maior que o ultimo num do vetor (atual ultimo), eh impossivel ele estar ainda mais a esquerda do vetor
+            
+            return -1;
+        }else{
+            return busca(v, n-1, numero);
+        }
+        
+    }
+        
+}
+
+
+
 ---------------------------------------------------------------------------------------------------
 
 
@@ -271,6 +359,62 @@ int soma(int n){
     }
 
     return n;
+}
+------- INVERTENDO UM VETOR ------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void troca(int *v, int n, int primeiro);
+
+int main(){
+    int *vetor, *p, n;
+
+    printf("Informe o tamanho do vetor:\\n");
+    scanf("%d", &n);
+
+    vetor = (int *) malloc(n * sizeof(int));
+    if(vetor == NULL){
+        printf("Nao foi possivel alocar o vetor na memoria!");
+        return 0;
+    }else{
+
+        printf("Entre com os valores para o vetor:\\n");
+        for(p = vetor; p < vetor + n; p++){
+            scanf("%d", p);
+        }
+
+        printf("Vetor original:\\n");
+        for(p = vetor; p < vetor +n; p++){
+            printf("%d ", *p);
+    }
+
+        troca(vetor, n, 0);
+
+        printf("\\nVetor invertido:\\n");
+        for(p = vetor; p < vetor + n; p++){
+            printf("%d ", *p);
+        }
+    }
+
+    free(vetor);
+
+    return 0;
+
+}
+
+void troca(int *v, int n, int primeiro){
+    int aux;
+
+    if(n <= primeiro){
+        return;
+    }else{
+        aux = v[primeiro];
+        v[primeiro] = v[n-1];
+        v[n-1] = aux;
+
+        return troca(v, n-1, n+1);
+    }
 
 }
 */
