@@ -476,6 +476,34 @@ int soma(int n){
     
 }
 
+------ QUANTIDADE DE DÍGITOS DO NÚMERO N ------
+#include <stdio.h>
+
+int soma(int n);
+
+int main(){
+    int n, aux;
+    
+    printf("Digite um numero inteiro ai:\n");
+    scanf("%d", &n);
+    
+    aux = soma(n);
+    
+    printf("A quantidade de digitos que o numero %d possui eh: %d", n, aux);
+    
+    return 0;
+}
+
+int soma(int n){
+    
+    if(n == 0){
+        return 0;
+    }else{
+        return 1 + soma(n/10);
+    }
+    
+}
+
 ----------- SOMA DE TODOS OS NUMEROS ATE N --------
 
 #include <stdio.h>
