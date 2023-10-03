@@ -273,6 +273,83 @@ void ordena(int *v, int n){
     }
 }
 
+----------- BUSCA BINARIA COM RECURSÃO -----------  
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void ordena(int *v, int n);
+
+int buscaBinaria(int *vetor, int numero, int comeco, int fim);
+
+int main(){
+    int *vetor, *p, n, numero, posicao = -1;
+    
+    printf("Digite o tamanho do vetor:\n");
+    scanf("%d", &n);
+    
+    vetor =  (int *) malloc(n * sizeof(int));
+    if(vetor == NULL){
+        printf("Impossivel alocar o vetor!");
+        return 0;
+    }else{
+        printf("Entre com os numeros do vetor:\n");
+        for(p = vetor; p < vetor + n; p++){
+            scanf("%d", p);
+        }
+        
+        printf("Digite um numero inteiro qualquer:\n");
+        scanf("%d", &numero);
+        
+        ordena(vetor, n);
+        
+        posicao = buscaBinaria(vetor, numero, 0, n);
+        
+        if(posicao == -1){
+            printf("O numero %d NAO esta no vetor!", numero);
+        }else{
+            printf("O numero %d esta na posicao %d do vetor ordenado!", numero, posicao);
+        }
+        
+        free(vetor);
+    }
+    
+    return 0;
+}
+
+void ordena(int *v, int n){
+    int *p, *q, aux;
+    
+    for(p = &v[n-1]; p > v - 1; p--){
+        for(q = v; q < p; q++){
+            if(*q > *(q + 1)){
+                aux = *q;
+                *q = *(q + 1);
+                *(q + 1) = aux;
+            }
+        }
+    }
+}
+
+int buscaBinaria(int *vetor, int numero, int comeco, int fim){
+    int medio = (comeco + fim)/2;
+    
+    if(comeco > fim){
+        return -1;
+    }
+    if(*(vetor + medio) == numero){
+        return medio;              //numero esta na posicao medio do vetor!
+    }else if(numero > *(vetor + medio)){
+        return buscaBinaria(vetor, numero, medio + 1, fim);
+    }else{
+        return buscaBinaria(vetor, numero, comeco, medio - 1);
+    }
+    
+    return -1;
+}
+
+
+
 ---------------------------------------------------------------------------------------------------
 
 
