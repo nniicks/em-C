@@ -447,6 +447,35 @@ int fat(int n){
 
 }
 
+------- SOMA DOS DIGITOS DE UM NUMERO INTEIRO N -------
+
+#include <stdio.h>
+
+int soma(int n);
+
+int main(){
+    int n, aux;
+    
+    printf("Digite um numero inteiro ai:\n");
+    scanf("%d", &n);
+    
+    aux = soma(n);
+    
+    printf("A soma dos digitos do numero %d eh: %d", n, aux);
+    
+    return 0;
+}
+
+int soma(int n){
+    
+    if(n == 0){
+        return 0;
+    }else{
+        return n % 10 + soma(n/10);
+    }
+    
+}
+
 ----------- SOMA DE TODOS OS NUMEROS ATE N --------
 
 #include <stdio.h>
