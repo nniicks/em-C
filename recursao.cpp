@@ -447,7 +447,53 @@ float soma(int n){
     }
 }
 
+------------ CALCULO DE X ELEVADO A N ----------
 
+#include <stdio.h>
+
+int potencia(int x, int n);
+
+int main(){
+    int x, n, resultado;
+    
+    printf("Informe a base:\n");
+    scanf("%d", &x);
+    
+    printf("Informe a potencia:\n");
+    scanf("%d", &n);
+    
+    resultado = potencia(x, n);
+    
+    printf("%d\n", resultado);
+    
+    return 0;
+}
+
+int potencia(int x, int n){
+
+    if(n == 0){
+        return 1;
+    }else if(n == 1){
+        return x;
+    }else{
+        return x * potencia(x, n-1);
+    }
+    
+}
+
+OBS: essa foi a primeira impelemtaçao que fiz. mas aux eh desnecessaria
+int potencia(int x, int n){
+    int aux = 1;
+    
+    if(n == 0){
+        return 1;
+    }else if(n == 1){
+        return x;
+    }else{
+        return aux = x * potencia(x, n-1);
+    }
+    
+}
 ------------ CALCULO DO FATORIAL DE UM NUMERO N --------
 
 #include <stdio.h>
@@ -476,6 +522,63 @@ int fat(int n){
 
     return n;
 
+}
+
+------- SOMA DOS DIGITOS DE UM NUMERO INTEIRO N -------
+
+#include <stdio.h>
+
+int soma(int n);
+
+int main(){
+    int n, aux;
+    
+    printf("Digite um numero inteiro ai:\n");
+    scanf("%d", &n);
+    
+    aux = soma(n);
+    
+    printf("A soma dos digitos do numero %d eh: %d", n, aux);
+    
+    return 0;
+}
+
+int soma(int n){
+    
+    if(n == 0){
+        return 0;
+    }else{
+        return n % 10 + soma(n/10);
+    }
+    
+}
+
+------ QUANTIDADE DE DÍGITOS DO NÚMERO N ------
+#include <stdio.h>
+
+int soma(int n);
+
+int main(){
+    int n, aux;
+    
+    printf("Digite um numero inteiro ai:\n");
+    scanf("%d", &n);
+    
+    aux = soma(n);
+    
+    printf("A quantidade de digitos que o numero %d possui eh: %d", n, aux);
+    
+    return 0;
+}
+
+int soma(int n){
+    
+    if(n == 0){
+        return 0;
+    }else{
+        return 1 + soma(n/10);
+    }
+    
 }
 
 ----------- SOMA DE TODOS OS NUMEROS ATE N --------
