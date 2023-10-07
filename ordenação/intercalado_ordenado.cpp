@@ -1,3 +1,5 @@
+//ordena dois vetores e faz a intercalaçao entre eles, de modo que o vetor resultante tbm seja ordenado
+
 #include <stdio.h>
 #include <stdlib.h>
 
