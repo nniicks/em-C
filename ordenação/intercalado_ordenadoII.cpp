@@ -96,13 +96,13 @@ void intercala(int *v1, int *v2, int *v3, int tam1, int tam2){
     //q++ vem sempre depois da insercao de um elemento no vetor 3
     while(p1 < v1 + tam1 && p2 < v2 + tam2){
         
-        while(*p1 < *p2){
+        while(*p1 <= *p2){
             *q = *p1;
             q++;
             p1++;
         }
 
-        while(*p2 < *p1){
+        while(*p2 <= *p1){
             *q = *p2;
             q++;
             p2++;
