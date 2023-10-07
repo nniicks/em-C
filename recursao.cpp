@@ -416,6 +416,34 @@ void binario(int n){
     printf("%d ", n % 2);
 }
 
+--------- MDC ALGORITMO DE EUCLIDES ---------
+
+#include <stdio.h>
+
+int mdc(int a, int b);
+
+int main(){
+    int a, b, aux;
+    
+    printf("Informe dois numeros inteiros: ");
+    scanf("%d %d", &a, &b);
+    
+    aux = mdc(a, b);
+    
+    printf("O mdc entre %d e %d eh: %d", a, b, aux);
+    
+    return 0;
+}
+
+int mdc(int a, int b){
+    
+    if(a % b == 0){
+        return b;
+    }else{
+        return mdc(b, a % b);
+    }
+}
+
 
 ------------ SOMA DE 1 + 1/2 + ... + 1/N --------
 
