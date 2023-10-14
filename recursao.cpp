@@ -694,4 +694,60 @@ void troca(int *v, int n, int primeiro){
     }
 
 }
+
+------ VERIFICANDO SE UM VETOR CONTEM PELO MENOS UM PAR --------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+bool contem_par(int *v, int n);
+
+int main(){
+    int *v, n, *p;
+    bool flag;
+    
+    scanf("%d", &n);
+    
+    v = (int *) malloc(n * sizeof(int));
+    if(v == NULL){
+        return 0;
+    }
+    
+    for(p = v; p < v + n; p++){
+        scanf("%d", p);
+    }
+    
+    flag = contem_par(v, n);
+    
+    if(flag == 1){
+        printf("True");
+    }else{
+        printf("False");
+    }
+    
+    return 0;
+}
+
+bool contem_par(int *v, int n){
+    
+    if(n == 0){
+        if(v[n] % 2 == 0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }else{
+        if(v[n-1] % 2 == 0){
+            return 1;
+        }else{
+            return contem_par(v, n -1);
+        }
+    }
+    
+}
+
+
+
+
+
 */
