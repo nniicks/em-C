@@ -703,6 +703,85 @@ void troca(int *v, int n, int primeiro){
 
 }
 
+------- INVERTENDO UM VETOR -------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void leitura(int *vetor, int n);
+
+void imprime(int *vetor, int n);
+
+void inverte(int *vetor1, int *vetor2, int n, int i);
+
+int main(){
+    int *vetor1, *vetor2, n;
+    
+    scanf("%d", &n);
+    
+    vetor1 = (int *) malloc(n * sizeof(int));
+    if(vetor1 == NULL){
+        return 0;
+    }
+    
+    vetor2 = (int *) malloc(n * sizeof(int));
+    if(vetor2 == NULL){
+        return 0;
+    }
+    
+    leitura(vetor1, n);
+    
+    inverte(vetor1, vetor2, n, 0);
+    
+    printf("Vetor original:\n");
+    imprime(vetor1, n);
+    
+    printf("\nVetor invertido:\n");
+    imprime(vetor2, n);
+    
+    free(vetor1);
+    free(vetor2);
+    
+    return 0;
+    
+}
+
+void leitura(int *vetor, int n){
+    int *p;
+    
+    for(p = vetor; p < vetor + n; p++){
+        scanf("%d", p);
+    }
+}
+
+void imprime(int *vetor, int n){
+    int *p;
+    
+    for(p = vetor; p < vetor + n; p++){
+        printf("%d ", *p);
+    }
+}
+
+void inverte(int *vetor1, int *vetor2, int n, int i){
+    
+    if(n == 0){
+        return;
+    }else{
+        
+        inverte(vetor1, vetor2, n-1, i+1);
+        vetor2[i] = vetor1[n-1];
+        
+         //da pra fazer assim tbm:
+
+        //vetor2[i] = vetor1[n-1];
+        //return inverte(vetor1, vetor2, n-1, i+1);
+        
+        
+    }
+    
+}
+
+
 ------ VERIFICANDO SE UM VETOR CONTEM PELO MENOS UM PAR --------
 
 #include <stdio.h>
@@ -753,9 +832,5 @@ bool contem_par(int *v, int n){
     }
     
 }
-
-
-
-
 
 */
