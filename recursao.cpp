@@ -609,6 +609,14 @@ int soma(int n){
     
 }
 
+outra maneira de fazer essa recursao:
+
+if(n / 10 == 0){
+    return 1;
+}else{
+    return 1 + soma(n/10)
+}
+
 ----------- SOMA DE TODOS OS NUMEROS ATE N --------
 
 #include <stdio.h>
