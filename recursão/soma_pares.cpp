@@ -18,6 +18,8 @@ int main(){
     leitura(vetor, n);
     
     printf("%.2f", media(vetor, n));
+
+    free(vetor);
     
     return 0;
     
