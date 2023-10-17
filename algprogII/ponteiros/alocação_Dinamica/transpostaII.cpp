@@ -77,7 +77,7 @@ void leitura(int **M, int l, int c){
     p = M;
     for(i = 0; i < l; i++){
         for(j = 0; j < c; j++){
-            scanf("%d", (*(p+i)+j));   //o primeiro * fazia eu pegar o conteudo apontado pelo pinteiro
+            scanf("%d", (*(p+i)+j));   //o primeiro * fazia eu pegar o conteudo apontado pelo ponteiro
         }
     }
   
