@@ -47,7 +47,7 @@ int main(){
     printf("Resultando da multiplicacao da matriz com o vetor:\n");
     imprimir(vr, m);
     
-    for(i = MAT; i < m; i++){
+    for(i = MAT; i < MAT +  m; i++){
         free(*i);
     }
     free(MAT);
