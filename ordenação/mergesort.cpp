@@ -23,7 +23,7 @@ int main(){
     printf("Entre com os valores do vetor:\n");
     leitura(vetor, n);
     
-    printf("Informe o intervalo no qual voce deseja ordenar o vetor: (comeco/fim\n");
+    printf("Informe o intervalo no qual voce deseja ordenar o vetor: (comeco/fim)\n");
     scanf("%d %d", &p, &r);
     
     mergesort(vetor, p, r);
