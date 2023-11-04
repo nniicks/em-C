@@ -1,24 +1,25 @@
-/*Escreva uma funcao para retornar SIM, caso uma chave x exista em uma lista encadeada p ou NAO
-caso contrario.*/
+/*Escreva uma funcao para retornar o ponteiro que aponta para a primeira ocorrencia de uma chave
+x, caso esta exista em uma lista encadeada p ou NULL caso contrario.*/
 
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct cel{
     int chave;
+    char nome[50];
     struct cel *proximo;
 }celula;
 
 void insere_fim(celula **lst, int numero);
 
-char* busca(celula *lst, int chave);
+celula *busca(celula *lst, int chave);
 
 void apaga(celula *lst);
 
 int main(){
-    celula *lista = NULL;
+    celula *lista = NULL, *p;
     int numero, chave;
-    char *resultado;
+    
     
     printf("Entre com inteiros e digite 0 caso queira parar com a insercao:\n");
     scanf("%d", &numero);
@@ -33,10 +34,13 @@ int main(){
     printf("Entre com uma chave (numero inteiro):\n");
     scanf("%d", &chave);
     
-    resultado = busca(lista, chave);
-    printf("A chave foi encontrada na lista? %s", resultado);
+    p = busca(lista, chave);
+    if(p == NULL){
+        printf("Chave nao foi encontrada na lista:\n");
+    }else{
+        printf("Nome conitdo na chave %d: %s", chave, p->nome);
+    }
     
-    free(resultado);
     apaga(lista);
     
     return 0;
@@ -48,6 +52,8 @@ void insere_fim(celula **lst, int numero){
     
     nova->chave = numero;
     nova->proximo = NULL;
+    printf("Digite o nome:\n");
+    scanf("%s",nova->nome);
     
     if(*lst == NULL){
         *lst = nova;
@@ -60,22 +66,14 @@ void insere_fim(celula **lst, int numero){
     }
 }
 
-char* busca(celula *lst, int chave){
+celula *busca(celula *lst, int chave){
     celula *p;
     p = lst;
     while(p != NULL && p->chave != chave){
         p = p->proximo;
     }
     
-    if(p == NULL){
-        char *nao = (char *) malloc(4);
-        strcpy(nao, "NAO");
-        return nao;
-    }else{
-        char *sim = (char *) malloc(4);
-        strcpy(sim, "SIM");
-        return sim;
-    }
+    return p;
 }
 
 void apaga(celula *lst){

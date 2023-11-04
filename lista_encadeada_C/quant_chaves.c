@@ -1,3 +1,5 @@
+/*Escreva uma funcao para determinar a quantidade de celulas de uma lista p*/
+
 #include <stdio.h>
 #include <stdlib.h>
 

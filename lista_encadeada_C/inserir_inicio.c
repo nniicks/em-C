@@ -1,3 +1,5 @@
+/*Escreva uma funcao para inserir no inıcio da lista encadeada p uma celula de chave x*/
+
 #include <stdio.h>
 #include <stdlib.h>
 

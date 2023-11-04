@@ -1,3 +1,5 @@
+/*Escreva uma funcao para retornar a quantidade de ocorrencias de uma chave x em uma lista encadeada p.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
