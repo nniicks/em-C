@@ -45,6 +45,8 @@ int main(){
             if(celula_removida != NULL){
                 printf("\nRemocao realizada!");
                 imprimir_pessoa(celula_removida->p);
+
+                free(celula_removida);       //liberando da memoria a celula que foi desempilhada
                 
             }else{
                 printf("\nPilha vazia!!\n");
@@ -86,9 +88,15 @@ celula* empilhar(celula *pilha){
     celula *nova = malloc(sizeof(celula));
     
     if(nova != NULL){
+<<<<<<< HEAD
         nova->p = ler_pessoa();    //insere um novo dado
         nova->proximo = pilha;     //atualiza o topo da pilha
         return nova;               //retorna o novo topo da pilha
+=======
+        nova->p = ler_pessoa();       //insere um novo dado
+        nova->proximo = pilha;        //atualiza o topo da pilha, que passa a ser "nova"
+        return nova;                  //retorna o novo topo
+>>>>>>> ee837d8b127e889dfa1017d46d2ecb7b12f5bc93
         
     }else{
         printf("\nNao foi possivel alocar na memoria essa estrutura!!\n");
