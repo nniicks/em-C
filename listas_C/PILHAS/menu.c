@@ -45,6 +45,8 @@ int main(){
             if(celula_removida != NULL){
                 printf("\nRemocao realizada!");
                 imprimir_pessoa(celula_removida->p);
+
+                free(celula_removida);       //liberando da memoria a celula que foi desempilhada
                 
             }else{
                 printf("\nPilha vazia!!\n");
