@@ -86,9 +86,9 @@ celula* empilhar(celula *pilha){
     celula *nova = malloc(sizeof(celula));
     
     if(nova != NULL){
-        nova->p = ler_pessoa();
-        nova->proximo = pilha;
-        return nova;
+        nova->p = ler_pessoa();    //insere um novo dado
+        nova->proximo = pilha;     //atualiza o topo da pilha
+        return nova;               //retorna o novo topo da pilha
         
     }else{
         printf("\nNao foi possivel alocar na memoria essa estrutura!!\n");
