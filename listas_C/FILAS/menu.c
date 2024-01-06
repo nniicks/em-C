@@ -106,4 +106,8 @@ void imprime(celula *fila){
         fila = fila->proximo;
     }
     printf("-------- FIM FILA -------\n");
+
+    /*aqui eu estou utilizando o proprio ponteiro para percorrer a fila
+    pq essa funcao n recebe o endereço dessa variavel, e sim o conteudo, que eh o ponteiro para o 
+    primeiro no*/
 }
