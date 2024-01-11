@@ -9,17 +9,25 @@ typedef struct cel{
     struct cel *proximo;
 }celula;
 
-void imprime(celula *lista);
+typedef struct{
+    celula *inicio;
+}Lista;
 
-void insere_final(celula **lista, int numero, char nome[]);
+void criar_lista(Lista *lista);
 
-celula* busca(celula **lista, int chave);
+void imprime(Lista lista);
+
+void insere_final(Lista *lista, int numero, char nome[]);
+
+celula* busca(Lista *lista, int chave);
 
 int main(){
-    celula *aux, *lista = NULL;
+    celula *aux;
+    Lista lista;
     int numero;
     char nome[MAX];
     
+    criar_lista(&lista);
     printf("Entre com inteiros e digite 0 para sair:\n");
     scanf("%d", &numero);
     getchar();
@@ -52,16 +60,22 @@ int main(){
     return 0;
 }
 
-void imprime(celula *lista){
-    
-    printf("\n---------- LISTA ----------\n");
-    while(lista != NULL){
-        printf("Nome: %s, chave associada: %d\n", lista->nome, lista->chave);
-        lista = lista->proximo;
-    }
+void criar_lista(Lista *lista){
+    lista->inicio = NULL;
 }
 
-void insere_final(celula **lista, int numero, char nome[]){
+void imprime(Lista lista){
+    celula *aux = lista.inicio;
+    
+    printf("\n---------- LISTA ----------\n");
+    while(aux != NULL){
+        printf("Nome: %s, chave associada: %d\n", aux->nome, aux->chave);
+        aux = aux->proximo;
+    }
+    
+}
+
+void insere_final(Lista *lista, int numero, char nome[]){
     celula *aux, *nova = malloc(sizeof(celula));
     
     if(nova != NULL){
@@ -69,10 +83,10 @@ void insere_final(celula **lista, int numero, char nome[]){
         strcpy(nova->nome, nome);
         nova->proximo = NULL;
         
-        if(*lista == NULL){
-            *lista = nova;
+        if(lista->inicio == NULL){
+            lista->inicio = nova;
         }else{
-            aux = *lista;
+            aux = lista->inicio;
             while(aux->proximo != NULL){
                 aux = aux->proximo;
             }
@@ -83,14 +97,14 @@ void insere_final(celula **lista, int numero, char nome[]){
     }
 }
 
-celula* busca(celula **lista, int chave){
+celula* busca(Lista *lista, int chave){
     celula *aux, *chave_buscada = NULL;
     
-    aux = *lista;
+    aux = lista->inicio;
     while(aux != NULL && aux->chave != chave){
         aux = aux->proximo;
     }
-    
+
     if(aux != NULL){ //chave foi encontrada
         chave_buscada = aux;
     }
