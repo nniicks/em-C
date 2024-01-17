@@ -1,0 +1,8 @@
+Nome do academico: jhonathan duarte barreto
+Idade: 20 anos
+Curso: ciencia da computacao
+RGA: 455577206
+Nome do academico: pedro
+Idade: 26 anos
+Curso: fisica
+RGA: 2020446
