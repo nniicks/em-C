@@ -13,13 +13,15 @@ void imprime(Pessoa *lista, int n);
 
 void salvar_no_arquivo(Pessoa *lista, int n);
 
+void ler_do_arquivo(Pessoa *lista);
+
 int main() {
     Pessoa lista[MAX];
     int opc;
     int n = 0;
     
     do {
-        printf("0 - Sair\n1 - Cadastrar\n2 - Imprimir\n");
+        printf("0 - Sair\n1 - Cadastrar\n2 - Imprimir\n3 - Salvar no arquivo\n4 - Ler do arquivo\n");
         scanf("%d", &opc);
         getchar();
 
@@ -27,18 +29,24 @@ int main() {
             cadastrar_pessoa(lista, n);
             n++;  
             
-        } else if (opc == 2) {
+        }else if (opc == 2){
+
             imprime(lista, n);
+            
+        }else if(opc == 3){
+            salvar_no_arquivo(lista, n);
+            
+        }else if(opc == 4){
+            ler_do_arquivo(lista);
         }
-    }while (opc != 0);
+    }while(opc != 0);
     
-    salvar_no_arquivo(lista, n);
     
     free(lista);  
     return 0;
 }
 
-void cadastrar_pessoa(Pessoa *lista, int n) {
+void cadastrar_pessoa(Pessoa *lista, int n){
     printf("Nome: ");
     scanf(" %49[^\n]", lista[n].nome); 
     
@@ -52,11 +60,15 @@ void cadastrar_pessoa(Pessoa *lista, int n) {
     scanf("%d", &lista[n].RGA);
 }
 
-void imprime(Pessoa *lista, int n) {
-    int i;
+void imprime(Pessoa *lista, int n){
+    //se n for 0, eu vou verificar se tem algo salvo no arquivo
+    if(n == 0){
+        FILE *aux = fopen("cadastro.txt", "r");
+        fscanf(aux, "Numero de pessoas cadastradas: %d", &n);
+    }
     printf("Total de pessoas cadastradas: %d\n", n);
     
-    for(i = 0; i < n ; i++){
+    for(int i = 0; i < n ; i++){
         printf("\n---------------------\n");
         printf("Nome: %s\n", (lista+i)->nome);
         printf("Curso: %s\n", (lista+i)->curso);
@@ -75,9 +87,13 @@ void salvar_no_arquivo(Pessoa *lista, int n){
     recria ele*/
     
     if(arq != NULL){
+        /*vou escrver logo no começo do arquivo o numero de pessoas cadastradas. 
+        isso vai me ajudar no momento em que eu for ler do arquivo*/
+        
+        fprintf(arq, "Numero de pessoas cadastradas: %d\n", n);
         for(int i = 0; i < n; i++){
-            fprintf(arq, "Nome do academico: %s\n", lista[i].nome);
-            fprintf(arq, "Idade: %d anos\n", lista[i].idade);
+            fprintf(arq, "Nome: %s\n", lista[i].nome);
+            fprintf(arq, "Idade: %d\n", lista[i].idade);
             fprintf(arq, "Curso: %s\n", lista[i].curso);
             fprintf(arq, "RGA: %d\n", lista[i].RGA);
             fprintf(arq, "\n");
@@ -89,3 +105,41 @@ void salvar_no_arquivo(Pessoa *lista, int n){
 }
 /*fopen possui dois parametros. o primeiro eh o nome do arquivo. 
 o segundo vai determinar oq vc vai fazer nesse arquivo; ler? escerver? e etc*/
+
+void ler_do_arquivo(Pessoa *lista){
+    FILE *arq = fopen("cadastro.txt", "r");
+    int quant;
+
+    if (arq != NULL) {
+        // le a quantidade de pessoas cadastradas do arquivo
+        fscanf(arq, "Numero de pessoas cadastradas: %d", &quant);
+        
+        // limpa o buffer do arquivo
+        while (fgetc(arq) != '\n');
+
+        for (int i = 0; i < quant; i++) {
+
+            // le os dados da pessoa do arquivo
+            fscanf(arq, "Nome: %49[^\n]", lista[i].nome);
+            // limpa o buffer do arquivo
+            while (fgetc(arq) != '\n');
+
+            fscanf(arq, "Idade: %d", &lista[i].idade);
+            // limpa o buffer do arquivo
+            while (fgetc(arq) != '\n');
+
+            fscanf(arq, "Curso: %49[^\n]", lista[i].curso);
+            // limpa o buffer do arquivo
+            while (fgetc(arq) != '\n');
+
+            fscanf(arq, "RGA: %d", &lista[i].RGA);
+            // limpa o buffer do arquivo
+            while (fgetc(arq) != '\n');
+
+        }
+
+        fclose(arq);
+    }else {
+        printf("Erro ao abrir o arquivo!!\n");
+    }
+}

@@ -1,10 +1,6 @@
-Nome do academico: quero me matar da silva
-Idade: 77 anos
-Curso: filosofia
-RGA: 20231000
-
-Nome do academico: luva de pedreiro
-Idade: 15 anos
-Curso: futebol
-RGA: 20202020
+Numero de pessoas cadastradas: 1
+Nome: pedro
+Idade: 10
+Curso: ciencia
+RGA: 20
 
