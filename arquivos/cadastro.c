@@ -94,7 +94,7 @@ void salvar_no_arquivo(Pessoa *lista, int n){
             fprintf(arq, "Idade: %d\n", lista[i].idade);
             fprintf(arq, "Curso: %s\n", lista[i].curso);
             fprintf(arq, "RGA: %d\n", lista[i].RGA);
-            fprintf(arq, "\n");
+            //fprintf(arq, "\n");
         }
         fclose(arq);
     }else{
@@ -110,29 +110,19 @@ void ler_do_arquivo(Pessoa *lista){
 
     if (arq != NULL) {
         // le a quantidade de pessoas cadastradas do arquivo
-        fscanf(arq, "Numero de pessoas cadastradas: %d", &quant);
+        fscanf(arq, "Numero de pessoas cadastradas: %d\n", &quant);
         
-        // limpa o buffer do arquivo
-        while (fgetc(arq) != '\n');
 
         for (int i = 0; i < quant; i++) {
 
             // le os dados da pessoa do arquivo
-            fscanf(arq, "Nome: %49[^\n]", lista[i].nome);
-            // limpa o buffer do arquivo
-            while (fgetc(arq) != '\n');
+            fscanf(arq, "Nome: %49[^\n]\n", lista[i].nome);
 
-            fscanf(arq, "Idade: %d", &lista[i].idade);
-            // limpa o buffer do arquivo
-            while (fgetc(arq) != '\n');
+            fscanf(arq, "Idade: %d\n", &lista[i].idade);
 
-            fscanf(arq, "Curso: %49[^\n]", lista[i].curso);
-            // limpa o buffer do arquivo
-            while (fgetc(arq) != '\n');
+            fscanf(arq, "Curso: %49[^\n]\n", lista[i].curso);
 
-            fscanf(arq, "RGA: %d", &lista[i].RGA);
-            // limpa o buffer do arquivo
-            while (fgetc(arq) != '\n');
+            fscanf(arq, "RGA: %d\n", &lista[i].RGA);
 
         }
 

@@ -1,6 +1,16 @@
-Numero de pessoas cadastradas: 1
-Nome: pedro
-Idade: 10
-Curso: ciencia
-RGA: 20
+Numero de pessoas cadastradas: 3
+Nome: joao nathan
+Idade: 20
+Curso: ciencia da
+RGA: 101022
+
+Nome: pedro luis
+Idade: 18
+Curso: artes
+RGA: 232425
+
+Nome: marie amada
+Idade: 25
+Curso: musica
+RGA: 141516
 

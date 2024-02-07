@@ -19,7 +19,7 @@ int ler_arquivo(Contato **lista, char nome[]);
 
 int main(){
     Contato *lista[MAX];
-    char arquivo[] = {"agenda.txt"};
+    char arquivo[] = {"nomes.txt"};
     int quant = 0, opc;
     
     do{
@@ -58,15 +58,15 @@ void imprime(Contato **lista, int quant){
     }
 }
 
-int cadastrar(Contato **lista, int quant, int tam){
+int cadastrar(Contato **lista, int quant, int tam){ //Melhor deixar void, já que é uma função que apenas atualiza dados
     if(quant < tam){
         Contato *aux = malloc(sizeof(Contato));
         if(aux != NULL){
             
             printf("Digite o nome da pessoa:\n");
-            scanf("%50[^\n]", aux->nome);
+            scanf("%[^\n]", aux->nome);
             printf("Digite a data de aniversario: dd/mm/aa\n");
-            scanf("%d/%d/%d", &aux->dia, &aux->mes, &aux->ano);
+            scanf("%2d/%2d/%2d", &aux->dia, &aux->mes, &aux->ano);
             getchar();
             
             lista[quant] = aux;
@@ -97,9 +97,9 @@ void alterar_lista(Contato **lista, int quant){
         if(novo != NULL){
     
             printf("Digite o nome da pessoa:\n");
-            scanf("%50[^\n]", novo->nome);
+            scanf("%[^\n]", novo->nome);
             printf("Digite a data de aniversario: dd/mm/aa\n");
-            scanf("%d/%d/%d", &novo->dia, &novo->mes, &novo->ano);
+            scanf("%2d/%2d/%4d", &novo->dia, &novo->mes, &novo->ano);
             getchar();
             
             lista[aux] = novo;
@@ -134,23 +134,20 @@ void salvar(Contato **lista, int quant, char nome[]){
 
 int ler_arquivo(Contato **lista, char nome[]){
     FILE *arq = fopen(nome, "r");
-    int quant = 0;
-    Contato *aux;
-    
+    int quant =  0;
     if(arq != NULL){
-        fscanf(arq, "Numero de pessoas na agenda: %d\n", &quant);
-         
-        for(int i = 0; i < quant; i++){
-            aux = malloc(sizeof(Contato));
+
+        fscanf(arq, "Numero de pessoas na agenda: %d", &quant);
+        for(int i =  0; i < quant; i++){
+            Contato *aux = malloc(sizeof(Contato));
             fscanf(arq, "\n------------------------------------------------------------------------\n");
             fscanf(arq, "Codigo de registro: %*d\n"); //Isso é feito para ignorar o codigo lido, evitando problemas
             fscanf(arq, "Nome da pessoa: %[^\t]\tData de aniversario: %d/%d/%d\n", aux->nome, &aux->dia, &aux->mes, &aux->ano);
-            lista[i] = aux;
+            lista[i] = aux;//Aqui vou atualizar os dados da minha lista
         }
         fclose(arq);
-    }else{
+    } else {
         printf("Erro ao abrir o arquivo!\n");
     }
-    
     return quant;
 }

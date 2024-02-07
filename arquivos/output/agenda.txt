@@ -1,11 +1,10 @@
-Numero de pessoas na agenda: 2
-
---------------------
-	Codigo de registro: 1
-Nome da pessoa: podre cre da silva	Data de aniversario: 10/12/1201
-
-
---------------------
-	Codigo de registro: 2
-Nome da pessoa: chico melancia	Data de aniversario: 25/10/2010
-
+Numero de pessoas na agenda: 3
+------------------------------------------------------------------------
+Codigo de registro: 1
+Nome da pessoa: eu mesmo da silva	Data de aniversario: 31/12/2011
+------------------------------------------------------------------------
+Codigo de registro: 2
+Nome da pessoa: flavin do pneu	Data de aniversario:  1/ 7/2008
+------------------------------------------------------------------------
+Codigo de registro: 3
+Nome da pessoa: gabrielson da silva pinto	Data de aniversario: 24/ 8/2025
