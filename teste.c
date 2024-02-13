@@ -151,3 +151,5 @@ int ler_arquivo(Contato **lista, char nome[]){
     }
     return quant;
 }
+
+//teste
